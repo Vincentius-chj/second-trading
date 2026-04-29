@@ -1,0 +1,78 @@
+package com.second.hand.trading.service;
+
+import com.second.hand.trading.model.IdleItemModel;
+import com.second.hand.trading.vo.PageVo;
+
+import java.util.List;
+
+public interface IdleItemService {
+
+    /**
+     * 发布闲置
+     *
+     * @param idleItemModel
+     * @return
+     */
+    boolean addIdleItem(IdleItemModel idleItemModel);
+
+    /**
+     * 获取某个闲置的信息
+     *
+     * @param id
+     * @return
+     */
+    IdleItemModel getIdleItem(Long id);
+
+    /**
+     * 获取某个用户的所有闲置信息
+     *
+     * @param userId
+     * @return
+     */
+    List<IdleItemModel> getAllIdelItem(Long userId);
+
+    /**
+     * 搜索闲置
+     *
+     * @param findValue
+     * @param page
+     * @param nums
+     * @return
+     */
+    PageVo<IdleItemModel> findIdleItem(String findValue, int page, int nums);
+
+
+    // 多字段搜索闲置
+    PageVo<IdleItemModel> findIdleItemByMultiFields(String idleName, String minPrice, String maxPrice, Integer idleLabel, String idlePlace, String userNickname, String startTime, String endTime, int page, int nums);
+
+    // 按状态多字段搜索闲置
+    PageVo<IdleItemModel> findIdleItemByMultiFieldsWithStatus(String idleName, String minPrice, String maxPrice, Integer idleLabel, String idlePlace, String userNickname, String startTime, String endTime, Integer status, int page, int nums);
+
+
+    // 根据不同的状态查找闲置物品
+    PageVo<IdleItemModel> findIdleItem1(String findValue, int status, int page, int nums);
+    
+    // 根据不同的状态查找闲置物品（新增，支持任意状态）
+    PageVo<IdleItemModel> findIdleItemByStatus(String findValue, int status, int page, int nums);
+
+    /**
+     * 按分类获取闲置，分页器
+     *
+     * @param idleLabel
+     * @param page
+     * @param nums
+     * @return
+     */
+    PageVo<IdleItemModel> findIdleItemByLable(int idleLabel, int page, int nums);
+
+    /**
+     * 更新闲置的状态信息
+     *
+     * @param idleItemModel
+     * @return
+     */
+    boolean updateIdleItem(IdleItemModel idleItemModel);
+
+    PageVo<IdleItemModel> adminGetIdleList(int status, int page, int nums);
+
+}
